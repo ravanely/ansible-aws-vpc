@@ -133,7 +133,7 @@
             gateway_id: "{{ NATGW_out.gateway_id }}"
       register: privRT_out
 
-    - debut:
+    - debug:
         var: "{{ item }}"
       loop:
         - vpc_out.vpc.id
