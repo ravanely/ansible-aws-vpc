@@ -54,4 +54,4 @@
           Owner: NSI Devops Team
         group_id: "{{ BastionSG_out.group_id }}"
         vpc_subnet_id: "{{ pubsub1id }}"
-      register: bashionHost_out
+      register: bastionHost_out
