@@ -133,3 +133,17 @@
             gateway_id: "{{ NATGW_out.gateway_id }}"
       register: privRT_out
 
+    - debut:
+        var: "{{ item }}"
+      loop:
+        - vpc_out.vpc.id
+        - pubSub1_out.subnet.id
+        - pubSub2_out.subnet.id
+        - pubSub3_out.subnet.id
+        - privSub1_out.subnet.id
+        - privSub2_out.subnet.id
+        - privSub3_out.subnet.id
+        - igw_out.gateway_id
+        - NATGW_out.gateway_id
+        - pubRT_out.route_table.id
+        - privRT_out.route_table.id
