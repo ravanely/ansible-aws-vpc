@@ -1,4 +1,4 @@
-vpc_name: "nsi-vpc"
+vpc_name: "NSIvpc"
 
 # VPC Range
 vpcCidr: '172.20.0/16'
