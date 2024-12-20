@@ -1,0 +1,53 @@
+- name: Setup Bastion Instance
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Import VPC setup variables
+      include_vars: vars/bastion_setup
+
+    - name: Import VPC output variables
+      include_vars: vars/output_vars
+
+    - name: Create ec2 key
+      ec2_key:
+        name: nsi-key
+        region: "{{ region }}"
+      register: key_out
+
+    - name: Save private key into file
+      copy:
+        content: "{{ key_out.key.private_key }}"
+        dest: ./bastion-key.pem
+        mode: 0600
+
+    - name: Create Sec Grp for bastion host
+      ec2_group:
+        name: Bastion-host-sg
+        region: "{{ region }}"
+        description: Allow port 22 from everywhere and all port within sg
+        vpc_id: "{{ vpcid }}"
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: "{{MYIP}}"
+      register: BastionSG_out
+
+    - name: Create Bastion Instance
+      ec2:
+        key_name: nsi-key
+        instance_type: t2.micro
+        region: "{{ region }}"
+        image: "{{ bastion_ami }}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: "Bastion-host"
+          Project: NSI
+          Owner: NSI Devops Team
+        exact_count: 1
+        count_tag:
+          Name: "Bastion-host"
+          Project: NSI
+          Owner: NSI Devops Team
