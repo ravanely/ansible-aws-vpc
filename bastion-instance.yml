@@ -40,7 +40,7 @@
 
     - name: Create Bastion Instance
       ec2:
-        key_name: nsi-key
+        key_name: "{{ key_out.key.name }}"
         region: "{{ region }}"
         instance_type: t2.micro
         image: "{{ bastion_ami }}"
