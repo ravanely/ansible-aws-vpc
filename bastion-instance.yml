@@ -37,8 +37,8 @@
     - name: Create Bastion Instance
       ec2:
         key_name: nsi-key
-        instance_type: t2.micro
         region: "{{ region }}"
+        instance_type: t2.micro
         image: "{{ bastion_ami }}"
         wait: yes
         wait_timeout: 300
@@ -51,3 +51,6 @@
           Name: "Bastion-host"
           Project: NSI
           Owner: NSI Devops Team
+        group_id: "{{ BastionSG_out.group_id }}"
+        vpc_subnet_id: "{{ pubsub1id }}"
+      register: bashionHost_out
