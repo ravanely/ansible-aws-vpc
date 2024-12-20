@@ -165,15 +165,15 @@
     - name: Create variable file for vpc output
       copy:
         content: |
-          vpcid: "{{ vpcid }}\n"
-          pubsub1id: "{{ pubsub1id }}\n"
-          pubsub2id: "{{ pubsub2id }}\n"
-          pubsub3id: "{{ pubsub3id }}\n"
-          privsub1id: "{{ privsub1id }}\n"
-          privsub2id: "{{ privsub2id }}\n"
-          privsub3id: "{{ privsub3id }}\n"
-          igwid: "{{ igwid }}\n"
-          NATGWid: "{{ NATGWid }}\n"
-          pubRTid: "{{ pubRTid }}\n"
-          privRTid: "{{ privRTid }}\n"
+          vpcid: "{{ vpcid }} \n"
+          pubsub1id: "{{ pubsub1id }} \n"
+          pubsub2id: "{{ pubsub2id }} \n"
+          pubsub3id: "{{ pubsub3id }} \n"
+          privsub1id: "{{ privsub1id }} \n"
+          privsub2id: "{{ privsub2id }} \n"
+          privsub3id: "{{ privsub3id }} \n"
+          igwid: "{{ igwid }} \n"
+          NATGWid: "{{ NATGWid }} \n"
+          pubRTid: "{{ pubRTid }} \n"
+          privRTid: "{{ privRTid }} \n"
         dest: vars/output_vars
