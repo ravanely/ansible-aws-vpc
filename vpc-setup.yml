@@ -93,3 +93,18 @@
         resource_tags:
           Name: "{{ vpc_name }}-IGW"
       register: igw_out
+
+    - name: Create public subnets Route Table
+      ec2_vpc_route_table:
+        vpc_id: "{{ vpc_out.vpc.id }}"
+        region: "{{ region }}"
+        tags:
+          Name: "{{ vpc_name }}-PubRT"
+        subnets:
+          - "{{ pubSub1_out.subnet.id }}"
+          - "{{ pubSub2_out.subnet.id }}"
+          - "{{ pubSub3_out.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ igw_out.gateway_id }}"
+      register: pubRT_out
