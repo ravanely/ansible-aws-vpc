@@ -1,7 +1,7 @@
 vpc_name: "nsi-vpc"
 
 # VPC Range
-vpcCidr: '172.20.0/16'
+vpcCidr: '172.20.0.0/16'
 
 # Subnets
 pubSub1Cidr: 172.20.1.0/24
