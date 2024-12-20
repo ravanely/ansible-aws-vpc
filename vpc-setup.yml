@@ -144,6 +144,36 @@
         - privSub2_out.subnet.id
         - privSub3_out.subnet.id
         - igw_out.gateway_id
-        - NATGW_out.gateway_id
+        - NATGW_out.nat_gateway_id
         - pubRT_out.route_table.id
         - privRT_out.route_table.id
+
+    - set_fact:
+        vpcid: "{{ vpc_out.vpc.id }}"
+        pubsub1id: "{{ pubSub1_out.subnet.id }}"
+        pubsub2id: "{{ pubSub2_out.subnet.id }}"
+        pubsub3id: "{{ pubSub3_out.subnet.id }}"
+        privsub1id: "{{ privSub1_out.subnet.id }}"
+        privsub2id: "{{ privSub2_out.subnet.id }}"
+        privsub3id: "{{ privSub3_out.subnet.id }}"
+        igwid: "{{ igw_out.gateway_id }}"
+        NATGWid: "{{ NATGW_out.nat_gateway_id }}"
+        pubRTid: "{{ pubRT_out.route_table.id }}"
+        privRTid: "{{ privRT_out.route_table.id }}"
+        cacheable: yes
+
+    - name: Create variable file for vpc output
+      copy:
+        content: |
+          vpcid: "{{ vpcid }}\n"
+          pubsub1id: "{{ pubsub1id }}\n"
+          pubsub2id: "{{ pubsub2id }}\n"
+          pubsub3id: "{{ pubsub3id }}\n"
+          privsub1id: "{{ privsub1id }}\n"
+          privsub2id: "{{ privsub2id }}\n"
+          privsub3id: "{{ privsub3id }}\n"
+          igwid: "{{ igwid }}\n"
+          NATGWid: "{{ NATGWid }}\n"
+          pubRTid: "{{ pubRTid }}\n"
+          privRTid: "{{ privRTid }}\n"
+        dest: vars/output_vars
