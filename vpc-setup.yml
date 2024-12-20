@@ -84,3 +84,12 @@
         resource_tags:
           Name: "{{ vpc_name }}-private-subnet-3"
       register: privSub3_out
+
+    - name: Create Internet Gateway
+      ec2_vpc_igw:
+        vpc_id: "{{ vpc_out.vpc.id }}"
+        region: "{{ region }}"
+        state: "{{ state }}"
+        resource_tags:
+          Name: "{{ vpc_name }}-IGW"
+      register: igw_out
